@@ -9,12 +9,18 @@ if ( have_posts() ) {
     while ( have_posts() ) {
         the_post();
         ?>
-        <article <?php post_class(); ?>>
-            <h2><?php the_title(); ?></h2>
-            <div class="entry-content">
-                <?php the_content(); ?>
+        <div class="grid-container">
+            <div class="grid-x grid-margin-x">
+                <div class="cell small-12">
+                    <article <?php post_class(); ?>>
+                        <h2><?php the_title(); ?></h2>
+                        <div class="entry-content">
+                            <?php the_content(); ?>
+                        </div>
+                    </article>
+                </div>
             </div>
-        </article>
+        </div>
         <?php
     }
 } else {

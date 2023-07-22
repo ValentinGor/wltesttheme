@@ -14,27 +14,28 @@
         <div class="grid-x grid-margin-x">
             <div class="cell small-2">
                 <div class="site-branding">
-                    <?php
-                    // Display the site logo or site title and description
-                    if (has_custom_logo()) {
-                        the_custom_logo();
-                    } else {
-                        echo '<h1 class="site-title">' . get_bloginfo('name') . '</h1>';
-                        echo '<p class="site-description">' . get_bloginfo('description') . '</p>';
-                    }
-                    ?>
+                    <a href="<?php echo home_url(); ?>">
+                        <?php
+                        $logo_url = get_custom_logo_url();
+                        if (!empty($logo_url)) {
+                            echo '<img src="' . esc_url($logo_url) . '" alt="Custom Logo">';
+                        } else {
+                            echo '<h1 class="site-title">' . get_bloginfo('name') . '</h1>';
+                            echo '<p class="site-description">' . get_bloginfo('description') . '</p>';
+                        }
+                        ?>
+                    </a>
                 </div>
             </div>
             <div class="cell small-6">
-                <nav class="site-navigation">
-                    <!-- Display the site menu -->
-                    <?php
-                    wp_nav_menu(array(
-                        'theme_location' => 'primary',
-                        'menu_class' => 'primary-menu',
-                    ));
-                    ?>
-                </nav>
+                <?php
+                // Display the menu assigned to the 'primary-menu' location
+                wp_nav_menu(array(
+                    'theme_location' => 'primary-menu',
+                    'container' => 'nav',
+                    'container_class' => 'primary-menu', // You can add a CSS class to the menu container
+                ));
+                ?>
             </div>
             <div class="cell small-4">
                 <a href="tel:<?php echo get_custom_cleaned_phone_number(); ?>">
@@ -47,4 +48,4 @@
 <!-- End site header -->
 
 
-<div id="content" class="site-content"> <!-- Opening div for the main content area -->
+<main id="content" class="site-content"> <!-- Opening div for the main content area -->

@@ -26,6 +26,17 @@ function wl_test_theme_excerpt_length( $length ) {
 add_filter( 'excerpt_length', 'wl_test_theme_excerpt_length', 999 );
 
 
+// Register the menu location
+function theme_register_menus() {
+    register_nav_menus( array(
+        'primary-menu' => 'Primary Menu', // Replace 'primary-menu' with your desired menu location name
+        // You can add more menu locations here if needed
+        //'secondary-menu' => 'Secondary Menu',
+        //'footer-menu' => 'Footer Menu',
+    ) );
+}
+add_action( 'after_setup_theme', 'theme_register_menus' );
+
 
 // Registering a custom record type "Car"
 function custom_post_type_car() {
@@ -59,6 +70,7 @@ function custom_post_type_car() {
         'hierarchical'       => false,
         'menu_position'      => null,
         'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' ),
+        'show_in_nav_menus'  => true, // Set to true to enable menu support
     );
 
     register_post_type( 'car', $args );
@@ -208,7 +220,7 @@ add_action( 'save_post_car', 'save_car_meta' );
 
 
 // Adding custom field "Phone Number" to the WordPress Customizer
-function custom_customize_register( $wp_customize ) {
+function custom_phone( $wp_customize ) {
     // Creating a new section
     $wp_customize->add_section( 'custom_contact_section', array(
         'title'       => 'Contact Information', // Section title
@@ -229,7 +241,7 @@ function custom_customize_register( $wp_customize ) {
         'priority' => 10, // Display priority of the control
     ) );
 }
-add_action( 'customize_register', 'custom_customize_register' );
+add_action( 'customize_register', 'custom_phone' );
 
 
 // Getting a phone number from the customizer settings
@@ -246,3 +258,53 @@ function get_custom_cleaned_phone_number() {
     $cleaned_phone_number = preg_replace( '/[^0-9]/', '', $cl_phone_number );
     return $cleaned_phone_number;
 }
+
+
+function custom_logo( $wp_customize ) {
+    $wp_customize->add_section( 'custom_logo_section', array(
+        'title'       => 'Custom Logo', // Section title
+        'description' => 'Upload a custom logo for your website.', // Section description (optional)
+        'priority'    => 160, // Display priority of the section in the Customizer
+    ) );
+
+    $wp_customize->add_setting( 'custom_logo', array(
+        'default' => '', // Default value if logo is not selected
+        'sanitize_callback' => 'esc_url_raw', // Sanitization function for the logo URL
+    ) );
+
+    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'custom_logo', array(
+        'label'    => 'Select Custom Logo', // Control label
+        'section'  => 'custom_logo_section', // Section where the control should be displayed
+        'settings' => 'custom_logo', // Settings associated with the control
+    ) ) );
+}
+add_action( 'customize_register', 'custom_logo' );
+
+function get_custom_logo_url() {
+    return get_theme_mod( 'custom_logo', '' );
+}
+
+function recent_cars_shortcode() {
+    $args = array(
+        'post_type'      => 'car', // Replace 'car' with the name of your custom post type
+        'posts_per_page' => 10,
+    );
+
+    $query = new WP_Query( $args );
+
+    if ( $query->have_posts() ) {
+        $output = '<ul>'; // Start the list
+        while ( $query->have_posts() ) {
+            $query->the_post();
+            $output .= '<li>' . get_the_title() . '</li>'; // Output the car title as a list item
+        }
+        $output .= '</ul>'; // Close the list
+    } else {
+        $output = 'No cars found.';
+    }
+
+    wp_reset_postdata();
+
+    return $output;
+}
+add_shortcode( 'recent_cars', 'recent_cars_shortcode' );
