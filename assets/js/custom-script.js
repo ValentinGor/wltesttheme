@@ -1,6 +1,7 @@
 // Init Foundation
 jQuery(document).foundation();
 
+// Content height between header and footer
 function setMainHeight() {
     const headerHeight = document.querySelector('header').offsetHeight;
     const footerHeight = document.querySelector('footer').offsetHeight;

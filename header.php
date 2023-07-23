@@ -32,15 +32,15 @@
                 </div>
 
                 <?php
-                // Вставляем функцию wp_nav_menu с вашим меню внутри top-bar
+                // Insert wp_nav_menu function with your menu inside top-bar
                 wp_nav_menu(array(
-                    'theme_location' => 'primary-menu', // Замените 'primary-menu' на имя вашего созданного меню
+                    'theme_location' => 'primary-menu',
                     'container' => 'div',
-                    'container_class' => 'top-bar', // CSS класс для обертки меню
-                    'menu_class' => 'dropdown menu', // CSS класс для меню списка
-                    'menu_id' => 'example-animated-menu', // ID для меню списка
-                    'items_wrap' => '<ul id="%1$s" class="%2$s" data-dropdown-menu>%3$s</ul>', // Обертка для меню списка с data-dropdown-menu атрибутом
-                    'fallback_cb' => false, // Отключаем отображение фоллбек меню, если меню не задано
+                    'container_class' => 'top-bar',
+                    'menu_class' => 'dropdown menu',
+                    'menu_id' => 'example-animated-menu',
+                    'items_wrap' => '<ul id="%1$s" class="%2$s" data-dropdown-menu>%3$s</ul>',
+                    'fallback_cb' => false,
                 ));
                 ?>
 

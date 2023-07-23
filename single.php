@@ -60,7 +60,7 @@ if (have_posts()) {
                                 // Display the car color
                                 $car_color = get_post_meta(get_the_ID(), 'car_color', true);
                                 if (!empty($car_color)) { ?>
-                                    <p class="color"><span >Color:</span>
+                                    <p class="color"><span>Color:</span>
                                         <span class="color" style="background-color: <?php echo esc_html($car_color); ?>">
                                         Color
                                     </span>
@@ -78,14 +78,14 @@ if (have_posts()) {
                                 // Display the car power
                                 $car_power = get_post_meta(get_the_ID(), 'car_power', true);
                                 if (!empty($car_power)) {
-                                    echo '<p><span>Power: </span>' . esc_html($car_power) . ' hp'.'</p>';
+                                    echo '<p><span>Power: </span>' . esc_html($car_power) . ' hp' . '</p>';
                                 } ?>
 
                                 <?php
                                 // Display the car price
                                 $car_price = get_post_meta(get_the_ID(), 'car_price', true);
                                 if (!empty($car_price)) {
-                                    echo '<p><span>Price: </span>' . esc_html($car_price) .' $'. '</p>';
+                                    echo '<p><span>Price: </span>' . esc_html($car_price) . ' $' . '</p>';
                                 } ?>
                             </div>
                         </div>

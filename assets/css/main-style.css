@@ -1,7 +1,6 @@
 /* Below, define the styles for your theme: */
 
 /* Start Body: */
-
 body {
     font-family: Arial, sans-serif;
     background-color: #f5f5f5;
@@ -67,7 +66,6 @@ header p.site-description {
 
 /* End Header */
 
-
 /* Start Main */
 main {
     padding: 2em 0;
@@ -92,10 +90,11 @@ span.color {
     font-size: 0;
     margin-left: 7px;
 
-    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.35);
-    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.35);
-    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.35);
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.35);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.35);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.35);
 }
+
 /* End Main */
 
 /* StartFooter */
@@ -114,7 +113,6 @@ footer {
 }
 
 /* EndFooter */
-
 
 @media (max-width: 640px) {
     .car-details {
