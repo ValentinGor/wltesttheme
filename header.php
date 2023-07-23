@@ -3,7 +3,6 @@
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php wp_title(); ?></title>
     <?php wp_head(); // Hook for WordPress plugins and additional head content ?>
 </head>
 <body <?php body_class(); ?>>
@@ -12,7 +11,7 @@
 <header>
     <div class="grid-container">
         <div class="grid-x grid-margin-x">
-            <div class="cell small-2">
+            <div class="cell medium-2 small-6 small-order-1 medium-order-1">
                 <div class="site-branding">
                     <a href="<?php echo home_url(); ?>">
                         <?php
@@ -22,25 +21,36 @@
                         } else {
                             echo '<h1 class="site-title">' . get_bloginfo('name') . '</h1>';
                             echo '<p class="site-description">' . get_bloginfo('description') . '</p>';
-                        }
-                        ?>
+                        } ?>
                     </a>
                 </div>
             </div>
-            <div class="cell small-6">
+            <div class="cell medium-6 small-12 small-order-2 medium-order-1">
+                <div class="title-bar" data-responsive-toggle="example-animated-menu" data-hide-for="medium">
+                    <button class="menu-icon" type="button" data-toggle></button>
+                    <div class="title-bar-title">Menu</div>
+                </div>
+
                 <?php
-                // Display the menu assigned to the 'primary-menu' location
+                // Вставляем функцию wp_nav_menu с вашим меню внутри top-bar
                 wp_nav_menu(array(
-                    'theme_location' => 'primary-menu',
-                    'container' => 'nav',
-                    'container_class' => 'primary-menu', // You can add a CSS class to the menu container
+                    'theme_location' => 'primary-menu', // Замените 'primary-menu' на имя вашего созданного меню
+                    'container' => 'div',
+                    'container_class' => 'top-bar', // CSS класс для обертки меню
+                    'menu_class' => 'dropdown menu', // CSS класс для меню списка
+                    'menu_id' => 'example-animated-menu', // ID для меню списка
+                    'items_wrap' => '<ul id="%1$s" class="%2$s" data-dropdown-menu>%3$s</ul>', // Обертка для меню списка с data-dropdown-menu атрибутом
+                    'fallback_cb' => false, // Отключаем отображение фоллбек меню, если меню не задано
                 ));
                 ?>
+
             </div>
-            <div class="cell small-4">
-                <a href="tel:<?php echo get_custom_cleaned_phone_number(); ?>">
-                    <?php echo get_custom_phone_number(); ?>
-                </a>
+            <div class="cell medium-4 small-6 small-order-1 medium-order-2">
+                <div class="site-phone">
+                    <a href="tel:<?php echo get_custom_cleaned_phone_number(); ?>">
+                        <?php echo get_custom_phone_number(); ?>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -48,4 +58,5 @@
 <!-- End site header -->
 
 
-<main id="content" class="site-content"> <!-- Opening div for the main content area -->
+<!-- Opening div for the main content area -->
+<main id="content" class="site-content">

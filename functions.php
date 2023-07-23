@@ -2,14 +2,14 @@
 // Enqueue styles and scripts
 function wl_test_theme_enqueue_scripts() {
     // Foundation CSS
-    wp_enqueue_style( 'foundation', 'https://cdnjs.cloudflare.com/ajax/libs/foundation/6.7.3/css/foundation.min.css', array(), '6.7.3' );
+    wp_enqueue_style( 'foundation', 'https://cdnjs.cloudflare.com/ajax/libs/foundation/6.7.5/css/foundation.min.css', array(), '6.7.5' );
 
     // Your custom styles
     wp_enqueue_style( 'wl-test-theme-style', get_stylesheet_uri(), array('foundation'), '1.0' );
     wp_enqueue_style( 'wl-test-theme-main-style', get_template_directory_uri() . '/assets/css/main-style.css', array('foundation'), '1.0' );
 
     // Foundation JS (include jQuery as a dependency)
-    wp_enqueue_script( 'foundation', 'https://cdnjs.cloudflare.com/ajax/libs/foundation/6.7.3/js/foundation.min.js', array('jquery'), '6.7.3', true );
+    wp_enqueue_script( 'foundation', 'https://cdnjs.cloudflare.com/ajax/libs/foundation/6.7.5/js/foundation.min.js', array('jquery'), '6.7.5', true );
 
     // Your custom scripts
     wp_enqueue_script( 'wl-test-theme-script', get_template_directory_uri() . '/assets/js/custom-script.js', array('jquery', 'foundation'), '1.0', true );
@@ -24,6 +24,10 @@ function wl_test_theme_excerpt_length( $length ) {
     return 30; // Change the number to adjust the excerpt length
 }
 add_filter( 'excerpt_length', 'wl_test_theme_excerpt_length', 999 );
+
+add_theme_support( 'title-tag' );
+
+add_theme_support( 'html5', array(  'script', 'style' ) );
 
 
 // Register the menu location

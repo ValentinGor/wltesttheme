@@ -1,6 +1,6 @@
 /* Below, define the styles for your theme: */
 
-/* For example: */
+/* Start Body: */
 
 body {
     font-family: Arial, sans-serif;
@@ -12,4 +12,123 @@ h1 {
     color: #007bff;
 }
 
-/* Add additional styles for your theme below... */
+.top-bar li {
+    list-style-type: none;
+}
+
+/* End Body: */
+
+/* Start Header */
+header {
+    background-color: #e6e6e6;
+}
+
+header a h1 {
+    font-size: 33px;
+    color: #000;
+    line-height: 1;
+    margin-top: 0.5rem;
+}
+
+header p.site-description {
+    font-size: 11px;
+    color: #000;
+    letter-spacing: -0.1px;
+}
+
+.site-branding {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.site-branding a img {
+    width: 100%;
+    max-width: 198px;
+    height: auto;
+    max-height: 58px;
+    object-fit: cover;
+}
+
+.top-bar {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.site-phone {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+}
+
+/* End Header */
+
+
+/* Start Main */
+main {
+    padding: 2em 0;
+}
+
+.car-thumbnail img {
+    width: 100%;
+    height: 235px;
+    object-fit: cover;
+}
+
+p.color {
+    display: flex;
+    align-items: center;
+}
+
+span.color {
+    display: flex;
+    width: 28px;
+    height: 28px;
+    border-radius: 28px;
+    font-size: 0;
+    margin-left: 7px;
+
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.35);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.35);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.35);
+}
+/* End Main */
+
+/* StartFooter */
+footer {
+    background-color: #e6e6e6;
+}
+
+.copyright {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.copyright p {
+    margin-top: 1em;
+}
+
+/* EndFooter */
+
+
+@media (max-width: 640px) {
+    .car-details {
+        margin-top: 16px;
+        padding: 16px;
+        background-color: #EFF0F0;
+        margin-bottom: 16px;
+    }
+
+    .car-thumbnail img {
+        height: auto;
+    }
+
+    ul.dropdown.menu {
+        flex-direction: column;
+    }
+}
